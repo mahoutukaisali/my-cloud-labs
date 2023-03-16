@@ -1,0 +1,27 @@
+---
+- name: Launch a new Windows Instance on EC2
+  amazon.aws.ec2_instance:
+    #aws_access_key: "{{ aws_access_key }}"
+    #aws_secret_key: "{{ aws_secret_key }}"
+    name: "{{ windows_2019_vm_name }}"
+    instance_type: "{{ instance_type }}"
+    region: "{{ region }}"
+    image_id: "{{ windows_image_id }}"
+    key_name: "{{ key_name }}"
+    state: running
+    wait: true
+    termination_protection: false
+    #vpc_subnet_id: "{{ item.subnet_id }}"
+    #network:
+    #  assign_public_ip: false
+    #security_group: "{{ win_security_group }}"
+    user_data: "{{ lookup('file', 'files/init.ps1') }}"
+    volumes:
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 30
+          volume_type: gp2
+          delete_on_termination: true
+    #tags:
+    #  Name: "{{ owner }} Kerberos Windows 2019"
+    #  Owner: "{{ owner }}"

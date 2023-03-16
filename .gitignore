@@ -1,2 +1,3 @@
 ansible.cfg
 dev
+aws/ec2/windows/files/loh_rsa_key.pem

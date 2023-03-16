@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+
+  roles:
+    - role: aws/ec2/windows
+      vars:
+        create: "windows2019"
