@@ -2,6 +2,12 @@
 - hosts: localhost
   gather_facts: false
   connection: local
+  vars:
+    create: true
+
+  #tasks:
+  #  - import_tasks: ./aws/vpc/tasks/create.yml
+  #    when: create == true
   roles:
     - role: aws/vpc
       vars:
